@@ -5,10 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="081381d8-4da8-4480-9894-89d49dc52ca5" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Assets/Mirror/Runtime/NetworkIdentity.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Mirror/Runtime/NetworkIdentity.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.GGJProject/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.GGJProject/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/FarmAnimals/Animations_Cute_Animals/TypeB/TypeB.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/FarmAnimals/Animations_Cute_Animals/TypeB/TypeB.controller" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/FarmAnimals/UI/Grass.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/FarmAnimals/UI/Grass.mat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/_GAME/Resources/GAME_MANAGER.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_GAME/Resources/GAME_MANAGER.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/_GAME/Resources/Player.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_GAME/Resources/Player.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_GAME/Scenes/MainMenu.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_GAME/Scenes/MainMenu.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/_GAME/Scenes/Testing/MalcolmTestScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_GAME/Scenes/Testing/MalcolmTestScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_GAME/Scenes/Testing/MalcolmTestScene/TestMaterial.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_GAME/Scenes/Testing/MalcolmTestScene/TestMaterial.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_GAME/Scripts/AlpacaController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_GAME/Scripts/AlpacaController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_GAME/Scripts/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_GAME/Scripts/GameManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -19,8 +28,17 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Assets/_GAME/Scripts/AlpacaController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/9a2bc2dadc3549b3bfc74bb584d5898953400/7a/fe0c1acf/MethodReference.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="ProjectId" id="23zNKUnl42y5f3ihWFnUkLPAtLi" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -40,6 +58,14 @@
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
+    <configuration name="Standalone Player" type="RunUnityExe" factoryName="Unity Executable">
+      <option name="EXE_PATH" value="$PROJECT_DIR$/../Builds\GGJProject.exe" />
+      <option name="PROGRAM_PARAMETERS" value="" />
+      <option name="WORKING_DIRECTORY" value="D:\BrokenPixel\LlamaDrama\Builds" />
+      <option name="PASS_PARENT_ENVS" value="1" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <method v="2" />
+    </configuration>
     <configuration name="Attach to Unity Editor &amp; Play" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="UNITY_ATTACH_AND_PLAY" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
@@ -69,7 +95,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1642732897310</updated>
-      <workItem from="1642732921746" duration="883000" />
+      <workItem from="1642732921746" duration="16789000" />
     </task>
     <servers />
   </component>
