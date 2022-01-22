@@ -86,6 +86,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
+  meshRenderer: {fileID: 7906519932744168408}
   characterController: {fileID: 5979702624057393627}
   alpacaAnimator: {fileID: 7857966893156273696}
   spitParticle: {fileID: 373076481877004244}
@@ -319,3 +320,31 @@ Animator:
   m_CorrespondingSourceObject: {fileID: 95486552707986800, guid: 17f32705f0b5c064d9d66ebca912989d, type: 3}
   m_PrefabInstance: {fileID: 7808722518312778576}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &7807604318975674242 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1135799655054546, guid: 17f32705f0b5c064d9d66ebca912989d, type: 3}
+  m_PrefabInstance: {fileID: 7808722518312778576}
+  m_PrefabAsset: {fileID: 0}
+--- !u!137 &7906519932744168408 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 137287491674867848, guid: 17f32705f0b5c064d9d66ebca912989d, type: 3}
+  m_PrefabInstance: {fileID: 7808722518312778576}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1022864973
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7807604318975674242}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 0, g: 0.7420628, b: 0.8392157, a: 1}
+  outlineWidth: 1.25
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []

@@ -12,6 +12,7 @@ public class AlpacaController : NetworkBehaviour
     public const int ANIMATION_MOVE = 2;
     public const int ANIMATION_DRINK = 4;
     
+    public SkinnedMeshRenderer meshRenderer;
     public CharacterController characterController;
     public Animator alpacaAnimator;
     public ParticleSystem spitParticle;
@@ -28,6 +29,7 @@ public class AlpacaController : NetworkBehaviour
     private Quaternion targetLookDir;
     private Vector3 worldMoveDirection;
     private Vector3 mouseWorldPoint;
+    private IUseable lastUsable;
 
     public void Start()
     {
@@ -97,6 +99,43 @@ public class AlpacaController : NetworkBehaviour
         spitParticle.Play(true);
     }
 
+    public void SetAlpacaColor(AlpacaColor color)
+    {
+        // change skin
+        meshRenderer.sharedMaterial.mainTexture = (color == AlpacaColor.PINK)
+            ? GameManager.Instance.pinkAlpacaTex
+            : GameManager.Instance.blueAlpacaTex;
+        
+        // change outline
+        Outline highlight = gameObject.GetComponentInChildren<Outline>();
+        if (highlight != null)
+        {
+            highlight.OutlineColor = (color == AlpacaColor.PINK)
+                ? GameManager.Instance.pinkAlpacaColor
+                : GameManager.Instance.blueAlpacaColor;
+        }
+    }
+
+    private void HighlightUsable()
+    {
+        if (lastUsable == null) return;
+        Outline highlight = lastUsable.GetGameObject().GetComponentInChildren<Outline>();
+        if (highlight != null)
+        {
+            highlight.enabled = true;
+        }
+    }
+
+    private void UnhighlightUsable()
+    {
+        if (lastUsable == null) return;
+        Outline highlight = lastUsable.GetGameObject().GetComponentInChildren<Outline>();
+        if (highlight != null)
+        {
+            highlight.enabled = false;
+        }
+    }
+    
     private void Update()
     {
         // do gravity
@@ -110,18 +149,24 @@ public class AlpacaController : NetworkBehaviour
             RaycastHit interactionHit;
             if (Physics.Raycast(fwdRay, out interactionHit, interactRaycastDist, 1 << InteractionLayer ))
             {
-                Debug.Log("Found interact layer!");
-                
-                if (Input.GetKeyDown(KeyCode.Space)
-                    || Input.GetMouseButtonDown(0))
+                lastUsable = interactionHit.transform.gameObject.GetComponent<IUseable>();
+                if (lastUsable != null)
                 {
-                    IUseable useable = interactionHit.transform.gameObject.GetComponent<IUseable>();
-                    if (useable != null)
+                    HighlightUsable();
+                    if (Input.GetKeyDown(KeyCode.Space)
+                        || Input.GetMouseButtonDown(0))
                     {
-                        useable.Use(this);
-                        return;
+                        if (lastUsable != null)
+                        {
+                            lastUsable.Use(this);
+                            return;
+                        }
                     }
                 }
+            }
+            else
+            {
+                UnhighlightUsable();
             }
             
             // mouse shit
