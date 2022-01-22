@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7369013076627766621}
   - component: {fileID: 7369013076627766622}
   - component: {fileID: 7369013076627766623}
+  - component: {fileID: 1640755347}
   m_Layer: 0
   m_Name: MULTIPLAYER_MANAGER
   m_TagString: Untagged
@@ -48,13 +49,13 @@ MonoBehaviour:
   runInBackground: 1
   autoStartServerBuild: 1
   serverTickRate: 30
-  offlineScene: 
-  onlineScene: 
+  offlineScene: Assets/_GAME/Scenes/MainMenu.unity
+  onlineScene: Assets/_GAME/Scenes/Testing/MalcolmTestScene.unity
   transport: {fileID: 7369013076627766623}
   networkAddress: localhost
   maxConnections: 100
   authenticator: {fileID: 0}
-  playerPrefab: {fileID: 0}
+  playerPrefab: {fileID: 3513755048297281022, guid: 87e6ac6bacb995d428b7c877b915a32b, type: 3}
   autoCreatePlayer: 1
   playerSpawnMethod: 0
   spawnPrefabs: []
@@ -70,7 +71,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b0fecffa3f624585964b0d0eb21b18e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Port: 7777
+  Port: 27015
   DualMode: 1
   NoDelay: 1
   Interval: 10
@@ -87,3 +88,17 @@ MonoBehaviour:
   debugLog: 0
   statisticsGUI: 0
   statisticsLog: 0
+--- !u!114 &1640755347
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7369013076627766592}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6442dc8070ceb41f094e44de0bf87274, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  offsetX: 0
+  offsetY: 0
