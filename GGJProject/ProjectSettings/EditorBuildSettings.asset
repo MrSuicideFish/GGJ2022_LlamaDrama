@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_GAME/Scenes/GameScene.unity
     guid: e73282d7113745b4a9e4619bce20c2ce
+  - enabled: 1
+    path: Assets/_GAME/Scenes/Testing/MalcolmTestScene.unity
+    guid: 36de56482681bf4479bfa511ffc2ae22
   m_configObjects: {}
