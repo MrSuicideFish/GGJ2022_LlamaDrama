@@ -8,9 +8,13 @@ public class AmmoTrough : NetworkBehaviour, IUseable
     
     public float drinkDuration = 3.0f;
 
+    public GameObject GetGameObject()
+    {
+        return this.gameObject;
+    }
+
     public void Use(AlpacaController player)
     {
-        Debug.Log("Use ammo trough!");
         StartCoroutine(DrinkCallback(player));
     }
 

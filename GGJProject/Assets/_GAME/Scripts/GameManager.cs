@@ -25,10 +25,20 @@ public class GameManager : Mirror.NetworkBehaviour
         }
     }
 
+    [Header("ALPACA")] 
+    public Texture2D blueAlpacaTex;
+    public Texture2D pinkAlpacaTex;
+
+    public Color blueAlpacaColor;
+    public Color pinkAlpacaColor;
+    
+    [Header("GAMEPLAY COMPONENTS")]
     public CinemachineVirtualCamera gameplayCamera;
     public CinemachineVirtualCamera nonGameplayCamera;
     public CinemachineTargetGroup cameraTargetGroup;
     public MMObjectPool objectPool;
+    
+    [Header("Debugging")]
     public bool levelTrackingEnabled = true;
 
     public CinemachineTrackedDolly gameCameraDollyTrack { get; private set; }
@@ -47,6 +57,14 @@ public class GameManager : Mirror.NetworkBehaviour
     public void AddPlayer(AlpacaController alpaca)
     {
         cameraTargetGroup.AddMember(alpaca.transform, 1, alpaca.characterController.radius);
+        if (alpaca.netIdentity.isClientOnly)
+        {
+            alpaca.SetAlpacaColor(AlpacaColor.BLUE);
+        }
+        else
+        {
+            alpaca.SetAlpacaColor(AlpacaColor.PINK);
+        }
     }
 
     public void StartGame()
