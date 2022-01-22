@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Cinemachine;
 using Mirror;
+using MoreMountains.Tools;
 using UnityEngine;
 
 public class GameManager : Mirror.NetworkBehaviour
@@ -27,7 +28,9 @@ public class GameManager : Mirror.NetworkBehaviour
     public CinemachineVirtualCamera gameplayCamera;
     public CinemachineVirtualCamera nonGameplayCamera;
     public CinemachineTargetGroup cameraTargetGroup;
-    
+    public MMObjectPool objectPool;
+    public bool levelTrackingEnabled = true;
+
     public CinemachineTrackedDolly gameCameraDollyTrack { get; private set; }
     
     [SyncVar] public float pathFollowSpeed;
@@ -69,7 +72,7 @@ public class GameManager : Mirror.NetworkBehaviour
             gameCameraDollyTrack = gameplayCamera.GetCinemachineComponent<CinemachineTrackedDolly>();    
         }
 
-        gameCameraDollyTrack.m_PathPosition = dollyTrackPosition;
+        gameCameraDollyTrack.m_PathPosition = dollyTrackPosition;  
     }
 
     private void Update()
@@ -78,10 +81,13 @@ public class GameManager : Mirror.NetworkBehaviour
         
         if (gameHasStarted)
         {
-            float nextTrackPosition = dollyTrackPosition + (Time.deltaTime * pathFollowSpeed);
-            if (nextTrackPosition < pathStopPosition)
+            if (levelTrackingEnabled)
             {
-                SetPathPosition(nextTrackPosition);    
+                float nextTrackPosition = dollyTrackPosition + (Time.deltaTime * pathFollowSpeed);
+                if (nextTrackPosition < pathStopPosition)
+                {
+                    SetPathPosition(nextTrackPosition);
+                }
             }
         }
     }

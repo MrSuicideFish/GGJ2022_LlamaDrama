@@ -7,15 +7,22 @@ using UnityEngine;
 
 public class AlpacaController : NetworkBehaviour
 {
+    public const int InteractionLayer = 10;
+    public const int ANIMATION_IDLE = 0;
+    public const int ANIMATION_MOVE = 2;
+    public const int ANIMATION_DRINK = 4;
+    
     public CharacterController characterController;
     public Animator alpacaAnimator;
     public ParticleSystem spitParticle;
 
     public float turnSmoothTime;
+    public float interactRaycastDist = 3.0f;
 
     [SyncVar] public float moveSpeed = 30;
     [SyncVar] public float ammo = 1.0f;
     [SyncVar] public float fireCost = 0.1f;
+    [SyncVar] public bool isDrinking = false;
     
     private float lookAngle;
     private Quaternion targetLookDir;
@@ -25,6 +32,44 @@ public class AlpacaController : NetworkBehaviour
     public void Start()
     {
         GameManager.Instance.AddPlayer(this);
+    }
+
+    [Command]
+    public void GiveAmmo()
+    {
+        ClientGiveAmmo();
+    }
+
+    [Command]
+    public void BeginDrink(Vector3 position, Vector3 direction)
+    {
+        ClientBeginDrink(position, direction);
+    }
+
+    [Command]
+    public void EndDrink()
+    {
+        ClientEndDrink();
+    }
+
+    [ClientRpc]
+    private void ClientBeginDrink(Vector3 position, Vector3 direction)
+    {
+        transform.position = position;
+        transform.forward = direction;
+        isDrinking = true;
+    }
+
+    [ClientRpc]
+    private void ClientEndDrink()
+    {
+        isDrinking = false;
+    }
+
+    [ClientRpc]
+    private void ClientGiveAmmo()
+    {
+        ammo = 1.0f;
     }
 
     private void Move(Vector3 moveDir)
@@ -54,31 +99,31 @@ public class AlpacaController : NetworkBehaviour
 
     private void Update()
     {
+        // do gravity
+        characterController.Move(Physics.gravity * Time.deltaTime);
+
         if (GameManager.Instance.gameHasStarted
                 && isLocalPlayer)
         {
-            float moveX = Input.GetAxis("Horizontal");
-            float moveZ = Input.GetAxis("Vertical");
+            // detect use
+            Ray fwdRay = new Ray(transform.position, transform.forward);
+            RaycastHit interactionHit;
+            if (Physics.Raycast(fwdRay, out interactionHit, interactRaycastDist, 1 << InteractionLayer ))
+            {
+                Debug.Log("Found interact layer!");
+                
+                if (Input.GetKeyDown(KeyCode.Space)
+                    || Input.GetMouseButtonDown(0))
+                {
+                    IUseable useable = interactionHit.transform.gameObject.GetComponent<IUseable>();
+                    if (useable != null)
+                    {
+                        useable.Use(this);
+                        return;
+                    }
+                }
+            }
             
-            worldMoveDirection = new Vector3(moveX, 0, moveZ);
-            if (worldMoveDirection != Vector3.zero)
-            {
-                Move(worldMoveDirection);
-
-                // play move anim
-                alpacaAnimator.SetInteger("animation", 2);
-            }
-            else
-            {
-                // play idle anim
-                alpacaAnimator.SetInteger("animation", 0);
-            }
-
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                Spit();
-            }
-
             // mouse shit
             Plane p = new Plane(Vector3.up, Vector3.zero);
             Ray mouseRay = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -87,8 +132,38 @@ public class AlpacaController : NetworkBehaviour
             {
                 mouseWorldPoint = mouseRay.GetPoint(enter);
             }
+            
+            if (isDrinking)
+            {
+                // play drink anim
+                alpacaAnimator.SetInteger("animation", ANIMATION_DRINK);
+            }
+            else
+            {
+                if (Input.GetKeyDown(KeyCode.Space) 
+                    || Input.GetMouseButtonDown(0))
+                {
+                    Spit();
+                }
+                
+                worldMoveDirection = new Vector3(
+                    Input.GetAxis("Horizontal"),
+                    0,
+                    Input.GetAxis("Vertical"));
+                
+                if (worldMoveDirection != Vector3.zero)
+                {
+                    Move(worldMoveDirection);
 
-            characterController.Move(Physics.gravity * Time.deltaTime);
+                    // play move anim
+                    alpacaAnimator.SetInteger("animation", ANIMATION_MOVE);
+                }
+                else
+                {
+                    // play idle anim
+                    alpacaAnimator.SetInteger("animation", ANIMATION_IDLE);
+                }
+            }
         }
     }
 }

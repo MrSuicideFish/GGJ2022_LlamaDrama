@@ -89,11 +89,12 @@ MonoBehaviour:
   characterController: {fileID: 5979702624057393627}
   alpacaAnimator: {fileID: 7857966893156273696}
   spitParticle: {fileID: 373076481877004244}
-  moveSpeed: 5
   turnSmoothTime: 1
-  runAnimSpeed: 2
+  interactRaycastDist: 1.3
+  moveSpeed: 5
   ammo: 1
   fireCost: 0.1
+  isDrinking: 0
 --- !u!114 &1848480919840013317
 MonoBehaviour:
   m_ObjectHideFlags: 0
