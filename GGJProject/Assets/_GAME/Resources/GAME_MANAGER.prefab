@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7402117171886554298}
   - component: {fileID: 587415784100056975}
   - component: {fileID: 1967227405}
+  - component: {fileID: 7499534217778437792}
   m_Layer: 0
   m_Name: GAME_MANAGER
   m_TagString: GameManager
@@ -54,6 +55,8 @@ MonoBehaviour:
   nonGameplayCamera: {fileID: 0}
   cameraTargetGroup: {fileID: 0}
   objectPool: {fileID: 0}
+  nametagCanvasPrefab: {fileID: 2195399765486626905, guid: f1a54b23d5f5dde4d9b16bd3b3a7e936, type: 3}
+  farmerManager: {fileID: 7499534217778437792}
   levelTrackingEnabled: 1
   pathFollowSpeed: 0.025
   pathStopPosition: 0.8
@@ -72,3 +75,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PooledGameObjects: []
+--- !u!114 &7499534217778437792
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1878921403842485308}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b6cc4f9f125f4e4cbcecaf6670be38c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeToRefreshDestination: 1
