@@ -38,6 +38,7 @@ public class GameManager : Mirror.NetworkBehaviour
     public CinemachineTargetGroup cameraTargetGroup;
     public MMObjectPool objectPool;
     public UIAlpacaTracker nametagCanvasPrefab;
+    public FarmerManager farmerManager;
     
     [Header("Debugging")]
     public bool levelTrackingEnabled = true;
@@ -154,6 +155,5 @@ public class GameManager : Mirror.NetworkBehaviour
 
     private void SpawnFarmers()
     {
-        
     }
 }
