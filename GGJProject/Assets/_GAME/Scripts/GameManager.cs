@@ -37,6 +37,7 @@ public class GameManager : Mirror.NetworkBehaviour
     public CinemachineVirtualCamera nonGameplayCamera;
     public CinemachineTargetGroup cameraTargetGroup;
     public MMObjectPool objectPool;
+    public UIAlpacaTracker nametagCanvasPrefab;
     
     [Header("Debugging")]
     public bool levelTrackingEnabled = true;
@@ -47,31 +48,36 @@ public class GameManager : Mirror.NetworkBehaviour
     [SyncVar] public float pathStopPosition = 0.9f;
     [SyncVar] [HideInInspector] public bool gameHasStarted;
     [SyncVar] [HideInInspector] public float dollyTrackPosition;
-
+    
+    private UIAlpacaTracker nametagCanvas;
     private List<AlpacaController> players;
 
     private void OnEnable()
     {
+        if (nametagCanvas == null)
+        {
+            nametagCanvas = UIAlpacaTracker.Instantiate(nametagCanvasPrefab);
+        }
         gameplayCamera.gameObject.SetActive(true);
         nonGameplayCamera.gameObject.SetActive(false);
     }
     
-    [Server]
+    [Command(requiresAuthority=false)]
     public void AddPlayer(AlpacaController alpaca)
     {
-        ServerAddPlayer(alpaca);
+        ClientAddPlayer(alpaca);
     }
     
     [ClientRpc(includeOwner=true)]
-    private void ServerAddPlayer(AlpacaController alpaca)
+    private void ClientAddPlayer(AlpacaController alpaca)
     {
         if (players == null)
         {
             players = new List<AlpacaController>();
         }
-
+        
         cameraTargetGroup.AddMember(alpaca.transform, 1, alpaca.characterController.radius);
-        if (alpaca.netIdentity.isServerOnly)
+        if (alpaca.netIdentity.isClientOnly)
         {
             alpaca.SetAlpacaColor(AlpacaColor.BLUE);
         }
@@ -80,12 +86,13 @@ public class GameManager : Mirror.NetworkBehaviour
             alpaca.SetAlpacaColor(AlpacaColor.PINK);
         }
         
+        nametagCanvas.CreateNametag("NO NAME", alpaca);
         players.Add(alpaca);
-
     }
 
     public void StartGame()
     {
+        SpawnFarmers();
         SetPathPosition(0);
         gameHasStarted = true;
     }
@@ -107,7 +114,7 @@ public class GameManager : Mirror.NetworkBehaviour
             gameCameraDollyTrack = gameplayCamera.GetCinemachineComponent<CinemachineTrackedDolly>();    
         }
 
-        gameCameraDollyTrack.m_PathPosition = dollyTrackPosition;  
+        gameCameraDollyTrack.m_PathPosition = dollyTrackPosition;
     }
 
     private void Update()
@@ -143,5 +150,10 @@ public class GameManager : Mirror.NetworkBehaviour
                 EndGame();
             }
         }
+    }
+
+    private void SpawnFarmers()
+    {
+        
     }
 }

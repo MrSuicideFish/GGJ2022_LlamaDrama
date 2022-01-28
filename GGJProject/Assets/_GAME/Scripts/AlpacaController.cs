@@ -14,10 +14,13 @@ public class AlpacaController : NetworkBehaviour
     
     public SkinnedMeshRenderer meshRenderer;
     public CharacterController characterController;
-    public Animator alpacaAnimator;
+    public Animator animator;
     public ParticleSystem spitParticle;
     public ParticleSystem dustParticle;
+    public Transform headTarget;
 
+    public AlpacaColor playerColor { get; private set; }
+    
     public float turnSmoothTime;
     public float interactRaycastDist = 3.0f;
 
@@ -31,7 +34,7 @@ public class AlpacaController : NetworkBehaviour
     private Vector3 worldMoveDirection;
     private Vector3 mouseWorldPoint;
     private IUseable lastUsable;
-
+    
     public override void OnStartClient()
     {
         base.OnStartClient();
@@ -101,6 +104,7 @@ public class AlpacaController : NetworkBehaviour
         spitParticle.Play(true);
     }
     
+    [Client]
     public void SetAlpacaColor(AlpacaColor color)
     {
         // change skin
@@ -116,6 +120,8 @@ public class AlpacaController : NetworkBehaviour
                 ? GameManager.Instance.pinkAlpacaColor
                 : GameManager.Instance.blueAlpacaColor;
         }
+
+        playerColor = color;
     }
 
     private void HighlightUsable()
@@ -160,7 +166,7 @@ public class AlpacaController : NetworkBehaviour
                     {
                         if (lastUsable != null)
                         {
-                            lastUsable.Use(this);
+                            lastUsable.Use(netIdentity);
                             return;
                         }
                     }
@@ -183,7 +189,7 @@ public class AlpacaController : NetworkBehaviour
             if (isDrinking)
             {
                 // play drink anim
-                alpacaAnimator.SetInteger("animation", ANIMATION_DRINK);
+                animator.SetInteger("animation", ANIMATION_DRINK);
             }
             else
             {
@@ -203,12 +209,12 @@ public class AlpacaController : NetworkBehaviour
                     Move(worldMoveDirection);
 
                     // play move anim
-                    alpacaAnimator.SetInteger("animation", ANIMATION_MOVE);
+                    animator.SetInteger("animation", ANIMATION_MOVE);
                 }
                 else
                 {
                     // play idle anim
-                    alpacaAnimator.SetInteger("animation", ANIMATION_IDLE);
+                    animator.SetInteger("animation", ANIMATION_IDLE);
                 }
             }
         }

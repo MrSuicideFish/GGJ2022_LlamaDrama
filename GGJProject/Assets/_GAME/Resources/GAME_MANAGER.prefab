@@ -54,7 +54,8 @@ MonoBehaviour:
   nonGameplayCamera: {fileID: 0}
   cameraTargetGroup: {fileID: 0}
   objectPool: {fileID: 0}
-  levelTrackingEnabled: 1
+  alpacaNametagCanvas: {fileID: 2195399765486626905, guid: f1a54b23d5f5dde4d9b16bd3b3a7e936, type: 3}
+  levelTrackingEnabled: 0
   pathFollowSpeed: 0.025
   pathStopPosition: 0.8
   gameHasStarted: 0
