@@ -16,6 +16,7 @@ public class AlpacaController : NetworkBehaviour
     public CharacterController characterController;
     public Animator alpacaAnimator;
     public ParticleSystem spitParticle;
+    public ParticleSystem dustParticle;
 
     public float turnSmoothTime;
     public float interactRaycastDist = 3.0f;
@@ -31,8 +32,9 @@ public class AlpacaController : NetworkBehaviour
     private Vector3 mouseWorldPoint;
     private IUseable lastUsable;
 
-    public void Start()
+    public override void OnStartClient()
     {
+        base.OnStartClient();
         GameManager.Instance.AddPlayer(this);
     }
 
@@ -98,7 +100,7 @@ public class AlpacaController : NetworkBehaviour
         // move me back!
         spitParticle.Play(true);
     }
-
+    
     public void SetAlpacaColor(AlpacaColor color)
     {
         // change skin

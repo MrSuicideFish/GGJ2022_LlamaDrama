@@ -48,16 +48,30 @@ public class GameManager : Mirror.NetworkBehaviour
     [SyncVar] [HideInInspector] public bool gameHasStarted;
     [SyncVar] [HideInInspector] public float dollyTrackPosition;
 
+    private List<AlpacaController> players;
+
     private void OnEnable()
     {
         gameplayCamera.gameObject.SetActive(true);
         nonGameplayCamera.gameObject.SetActive(false);
     }
-
+    
+    [Server]
     public void AddPlayer(AlpacaController alpaca)
     {
+        ServerAddPlayer(alpaca);
+    }
+    
+    [ClientRpc(includeOwner=true)]
+    private void ServerAddPlayer(AlpacaController alpaca)
+    {
+        if (players == null)
+        {
+            players = new List<AlpacaController>();
+        }
+
         cameraTargetGroup.AddMember(alpaca.transform, 1, alpaca.characterController.radius);
-        if (alpaca.netIdentity.isClientOnly)
+        if (alpaca.netIdentity.isServerOnly)
         {
             alpaca.SetAlpacaColor(AlpacaColor.BLUE);
         }
@@ -65,6 +79,9 @@ public class GameManager : Mirror.NetworkBehaviour
         {
             alpaca.SetAlpacaColor(AlpacaColor.PINK);
         }
+        
+        players.Add(alpaca);
+
     }
 
     public void StartGame()
