@@ -2481,8 +2481,7 @@ MonoBehaviour:
   nextRandomPositionDistThreshold: 1
   nextRandomPositionRange: 30
   nextRandomPositionZOffset: 14
-  chanceToFall: 0.05
-  fallDownDuration: 5
+  chanceToFall: 0.001
 --- !u!54 &3764817190466656236
 Rigidbody:
   m_ObjectHideFlags: 0

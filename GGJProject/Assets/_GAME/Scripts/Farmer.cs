@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using Cinemachine;
 using Mirror;
-using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -26,7 +25,8 @@ public class Farmer : NetworkBehaviour
         navAgent = this.GetComponent<NavMeshAgent>();
         FarmerManager.RegisterFarmer(this);
     }
-
+    
+    [Server]
     public void MoveToRandom()
     {
         if (animator == null) return;
@@ -35,19 +35,24 @@ public class Farmer : NetworkBehaviour
         if (state.IsName("Idle") || state.IsName("Running"))
         {
             float rnd = UnityEngine.Random.Range(0.0f, 1.0f);
-            if (rnd < 0.05f)
+            if (rnd < 0.005f)
             {
                 FallDown();
                 return;
             }
-
+            
             // choose another random destination
             CinemachinePathBase cameraPath = GameManager.Instance.gameCameraDollyTrack.m_Path;
             Vector3 targetDest = cameraPath.EvaluatePosition(GameManager.Instance.dollyTrackPosition);
             targetDest.x += UnityEngine.Random.Range(-nextRandomPositionRange, nextRandomPositionRange);
+            targetDest.y = 0;
             targetDest.z += nextRandomPositionZOffset + UnityEngine.Random.Range(0, nextRandomPositionRange);
-
-            MoveTo(targetDest);
+            
+            NavMeshHit navHit;
+            if (NavMesh.SamplePosition(targetDest, out navHit, 1.0f, NavMesh.AllAreas))
+            {
+                MoveTo(targetDest);
+            }
         }
         else
         {
@@ -56,6 +61,7 @@ public class Farmer : NetworkBehaviour
     }
 
     [ContextMenu("Fall Down")]
+    [ClientRpc]
     public void FallDown()
     {
         Stop();
@@ -76,6 +82,7 @@ public class Farmer : NetworkBehaviour
         yield return null;
     }
 
+    [ClientRpc]
     public void MoveTo(Vector3 position)
     {
         if (navAgent != null)
@@ -86,6 +93,7 @@ public class Farmer : NetworkBehaviour
         }
     }
 
+    [ClientRpc]
     public void Stop()
     {
         if (navAgent != null)

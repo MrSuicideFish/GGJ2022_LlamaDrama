@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Mirror;
 using UnityEngine;
 
 public class FarmerManager : MonoBehaviour
@@ -20,6 +21,7 @@ public class FarmerManager : MonoBehaviour
         allFarmers.Add(farmer);
     }
 
+    [Server]
     private void Update()
     {
         if (GameManager.Instance != null 
@@ -28,7 +30,7 @@ public class FarmerManager : MonoBehaviour
             if (hasStarted)
             {
                 redirectTimer += Time.deltaTime;
-                if (redirectTimer > 1.0f)
+                if (redirectTimer > 0.5f)
                 {
                     foreach (var f in allFarmers)
                     {
