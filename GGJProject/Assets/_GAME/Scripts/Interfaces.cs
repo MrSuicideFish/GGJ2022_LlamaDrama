@@ -1,4 +1,5 @@
 ﻿
+using Mirror;
 using UnityEngine;
 
 public enum AlpacaColor
@@ -11,5 +12,5 @@ public enum AlpacaColor
 public interface IUseable
 {
     GameObject GetGameObject();
-    void Use(AlpacaController player);
+    void Use(NetworkIdentity identity);
 }

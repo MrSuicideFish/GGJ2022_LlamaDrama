@@ -15,29 +15,47 @@ public class AmmoTrough : NetworkBehaviour, IUseable
         return this.gameObject;
     }
 
-    public void Use(AlpacaController player)
+    [Command(requiresAuthority = false)]
+    public void Use(NetworkIdentity identity)
     {
-        StartCoroutine(DrinkCallback(player));
+        if (identity != null)
+        {
+            ClientUse(identity);
+        }
     }
 
-    private IEnumerator DrinkCallback(AlpacaController player)
+    [ClientRpc]
+    private void ClientUse(NetworkIdentity identity)
     {
-        player.BeginDrink(player.transform.position,
-            transform.position - player.transform.position);
-        
-        OnDrinkStart?.Invoke();
-        
-        float t = 0.0f;
-        while (t < drinkDuration)
+        StartCoroutine(DrinkCallback(identity));
+    }
+
+    private IEnumerator DrinkCallback(NetworkIdentity identity)
+    {
+        AlpacaController player = identity.gameObject.GetComponent<AlpacaController>();
+        if (player != null)
         {
-            t += Time.deltaTime;
-            yield return null;
+            player.BeginDrink(player.transform.position,
+                transform.position - player.transform.position);
+        
+            OnDrinkStart?.Invoke();
+        
+            float t = 0.0f;
+            while (t < drinkDuration)
+            {
+                t += Time.deltaTime;
+                yield return null;
+            }
+        
+            player.GiveAmmo();
+            player.EndDrink();
+            OnDrinkEnd?.Invoke();
         }
-        
-        player.GiveAmmo();
-        player.EndDrink();
-        OnDrinkEnd?.Invoke();
-        
+        else
+        {
+            Debug.LogWarning("NO ALPACA CONTROLLER");
+        }
+
         yield return null;
     }
 }
