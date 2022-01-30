@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Cinemachine;
 using Newtonsoft.Json.Converters;
 using UnityEngine;
 
@@ -72,6 +73,11 @@ public class UIAlpacaTracker : MonoBehaviour
     {
         foreach (NametagInfo nameTagInfo in nametags)
         {
+            if (Camera.main == null || nameTagInfo.player == null)
+            {
+                continue;
+            }
+            
             // check if off-screen
             bool isOffscreen = false;
             
@@ -123,15 +129,22 @@ public class UIAlpacaTracker : MonoBehaviour
                 nameTagInfo.nametag.playerNameText.enabled = false;
 
                 // adjust arrow to point to player direction
-                Vector3 dollyTrackPos = GameManager.Instance.gameCameraDollyTrack.LookAtTargetPosition;
-                Vector3 centerToPlayerDir = dollyTrackPos - playerWorldPos;
-                centerToPlayerDir.y = 0;
-                nameTagInfo.nametag.arrowImg.transform.localEulerAngles = new Vector3(
-                    0, 0,
-                    Vector3.Angle(Vector3.forward, centerToPlayerDir));
+                if (GameManager.Instance != null)
+                {
+                    CinemachineTrackedDolly dolly = GameManager.Instance.gameCameraDollyTrack;
+                    if (dolly != null)
+                    {
+                        Vector3 dollyTrackPos = dolly.LookAtTargetPosition;
+                        Vector3 centerToPlayerDir = dollyTrackPos - playerWorldPos;
+                        centerToPlayerDir.y = 0;
+                        nameTagInfo.nametag.arrowImg.transform.localEulerAngles = new Vector3(
+                            0, 0,
+                            Vector3.Angle(Vector3.forward, centerToPlayerDir));
                 
-                // show warning message
-                nameTagInfo.nametag.ShowWarningMessage();
+                        // show warning message
+                        nameTagInfo.nametag.ShowWarningMessage();   
+                    }
+                }
             }
         }
     }

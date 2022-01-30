@@ -7,7 +7,7 @@ using UnityEngine;
 using UnityEngine.AI;
 
 [RequireComponent(typeof(NavMeshAgent))]
-public class Farmer : NetworkBehaviour
+public class Farmer : NetworkBehaviour, IDamageable
 {
     private const int ANIM_IDLE = 0;
     private const int ANIM_RUN = 1;
@@ -61,7 +61,7 @@ public class Farmer : NetworkBehaviour
     }
 
     [ContextMenu("Fall Down")]
-    [ClientRpc]
+    [Server]
     public void FallDown()
     {
         Stop();
@@ -102,17 +102,13 @@ public class Farmer : NetworkBehaviour
             SetAnimation(ANIM_IDLE);
         }
     }
-
-    [Command]
+    
+    [ClientRpc]
     public void Hit(AlpacaColor hitColor)
     {
-        ClientHit(hitColor);
-    }
-
-    [ClientRpc]
-    private void ClientHit(AlpacaColor hitColor)
-    {
         // set shader hit amount
+        
+        Debug.Log("[Client]: Hit farmer");
     }
 
     private void SetAnimation(int val)
@@ -121,5 +117,10 @@ public class Farmer : NetworkBehaviour
         {
             animator.SetInteger("Animation", val);
         }
+    }
+
+    public NetworkIdentity GetNetworkIdentity()
+    {
+        return this.netIdentity;
     }
 }

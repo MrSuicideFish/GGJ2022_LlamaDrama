@@ -2,6 +2,8 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using Mirror;
+using UnityEngine.Events;
 
 public class ParticleCollisionInstance : MonoBehaviour
 {
@@ -13,19 +15,42 @@ public class ParticleCollisionInstance : MonoBehaviour
     public bool useOnlyRotationOffset = true;
     public bool UseFirePointRotation;
     public bool DestoyMainEffect = true;
+    public UnityEvent<HitInfo> OnParticleCollisionEvent;
+    
     private ParticleSystem part;
     private List<ParticleCollisionEvent> collisionEvents = new List<ParticleCollisionEvent>();
     private ParticleSystem ps;
+    private AlpacaController alpaca;
 
     void Start()
     {
         part = GetComponent<ParticleSystem>();
+        alpaca = GetComponentInParent<AlpacaController>();
     }
+    
     void OnParticleCollision(GameObject other)
     {      
-        int numCollisionEvents = part.GetCollisionEvents(other, collisionEvents);     
+        int numCollisionEvents = part.GetCollisionEvents(other, collisionEvents);
+        bool hasAppliedHit = false;
         for (int i = 0; i < numCollisionEvents; i++)
         {
+            // Apply Hit
+            if (!hasAppliedHit)
+            {
+                IDamageable dmgable = other.GetComponentInParent<IDamageable>();
+                if (dmgable != null)
+                {
+                    HitInfo hitInfo = new HitInfo(dmgable.GetNetworkIdentity().netId, alpaca.netId);
+                    if (dmgable is Farmer)
+                    {
+                        GameManager.Instance.HitFarmer(hitInfo);
+                    }
+                    
+                    hasAppliedHit = true;
+                }
+            }
+            
+            // Apply Effects
             foreach (var effect in EffectsOnCollision)
             {
                 var instance = Instantiate(effect, collisionEvents[i].intersection + collisionEvents[i].normal * Offset, new Quaternion()) as GameObject;
@@ -40,6 +65,7 @@ public class ParticleCollisionInstance : MonoBehaviour
                 Destroy(instance, DestroyTimeDelay);
             }
         }
+
         if (DestoyMainEffect == true)
         {
             Destroy(gameObject, DestroyTimeDelay + 0.5f);

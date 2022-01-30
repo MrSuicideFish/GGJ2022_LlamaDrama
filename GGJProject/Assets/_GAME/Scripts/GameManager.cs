@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Cinemachine;
 using Mirror;
 using MoreMountains.Tools;
@@ -39,7 +40,7 @@ public class GameManager : Mirror.NetworkBehaviour
     public MMObjectPool objectPool;
     public UIAlpacaTracker nametagCanvasPrefab;
     public FarmerManager farmerManager;
-    
+
     [Header("Debugging")]
     public bool levelTrackingEnabled = true;
 
@@ -50,6 +51,7 @@ public class GameManager : Mirror.NetworkBehaviour
     [SyncVar] [HideInInspector] public bool gameHasStarted;
     [SyncVar] [HideInInspector] public float dollyTrackPosition;
     
+    private TeamInterestManagement teamManager;
     private UIAlpacaTracker nametagCanvas;
     private List<AlpacaController> players;
 
@@ -62,33 +64,48 @@ public class GameManager : Mirror.NetworkBehaviour
         gameplayCamera.gameObject.SetActive(true);
         nonGameplayCamera.gameObject.SetActive(false);
     }
-    
-    [Command(requiresAuthority=false)]
-    public void AddPlayer(AlpacaController alpaca)
+
+    public override void OnStartClient()
     {
-        ClientAddPlayer(alpaca);
+        teamManager = NetworkManager.singleton.GetComponent<TeamInterestManagement>();
+        base.OnStartClient();
+    }
+
+    [Command(requiresAuthority = false)]
+    public void AddPlayer(NetworkIdentity playerIdentity)
+    {
+        ClientAddPlayer(playerIdentity);
     }
     
-    [ClientRpc(includeOwner=true)]
-    private void ClientAddPlayer(AlpacaController alpaca)
+    [ClientRpc]
+    private void ClientAddPlayer(NetworkIdentity playerIdentity)
     {
         if (players == null)
         {
             players = new List<AlpacaController>();
         }
         
-        cameraTargetGroup.AddMember(alpaca.transform, 1, alpaca.characterController.radius);
-        if (alpaca.netIdentity.isClientOnly)
+        if (teamManager != null)
         {
-            alpaca.SetAlpacaColor(AlpacaColor.BLUE);
+            teamManager.OnSpawned(playerIdentity);
         }
-        else
+
+        AlpacaController alpaca = playerIdentity.gameObject.GetComponent<AlpacaController>();
+        if (alpaca != null)
         {
-            alpaca.SetAlpacaColor(AlpacaColor.PINK);
-        }
+            cameraTargetGroup.AddMember(alpaca.transform, 1, alpaca.characterController.radius);
+            if (alpaca.netIdentity.isClientOnly)
+            {
+                alpaca.SetAlpacaColor(AlpacaColor.BLUE);
+            }
+            else
+            {
+                alpaca.SetAlpacaColor(AlpacaColor.PINK);
+            }
         
-        nametagCanvas.CreateNametag("NO NAME", alpaca);
-        players.Add(alpaca);
+            nametagCanvas.CreateNametag("NO NAME", alpaca);
+            players.Add(alpaca);
+        }
     }
 
     public void StartGame()
@@ -102,7 +119,22 @@ public class GameManager : Mirror.NetworkBehaviour
     {
         gameHasStarted = false;
     }
-    
+
+    [ServerCallback]
+    public void HitFarmer(HitInfo hitInfo)
+    {
+        Debug.Log("[Server]: Hit farmer");
+
+        Farmer farmer = farmerManager.GetFarmerById(hitInfo.hitEntityId);
+        AlpacaController alpaca = players.FirstOrDefault(x => x.netId == hitInfo.hitById);
+        
+        if (farmer != null
+            && alpaca != null)
+        {
+            farmer.Hit(alpaca.playerColor);
+        }
+    }
+
     private void SetPathPosition(float pos)
     {
         dollyTrackPosition = pos;

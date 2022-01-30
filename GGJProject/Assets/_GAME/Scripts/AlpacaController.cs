@@ -3,8 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using Cinemachine;
 using Mirror;
+using MoreMountains.Feedbacks;
+using MoreMountains.FeedbacksForThirdParty;
 using UnityEngine;
+using UnityEngine.Events;
 
+[RequireComponent(typeof(NetworkTeam))]
 public class AlpacaController : NetworkBehaviour
 {
     public const int InteractionLayer = 10;
@@ -18,6 +22,11 @@ public class AlpacaController : NetworkBehaviour
     public ParticleSystem spitParticle;
     public ParticleSystem dustParticle;
     public Transform headTarget;
+
+    [Header("Feedbacks")]
+    public UnityEvent OnSpit;
+    public UnityEvent OnStartDrinking;
+    public UnityEvent OnStopDrinking;
 
     public AlpacaColor playerColor { get; private set; }
     
@@ -34,11 +43,11 @@ public class AlpacaController : NetworkBehaviour
     private Vector3 worldMoveDirection;
     private Vector3 mouseWorldPoint;
     private IUseable lastUsable;
-    
+
     public override void OnStartClient()
     {
         base.OnStartClient();
-        GameManager.Instance.AddPlayer(this);
+        GameManager.Instance.AddPlayer(netIdentity);
     }
 
     [Command]
@@ -51,12 +60,14 @@ public class AlpacaController : NetworkBehaviour
     public void BeginDrink(Vector3 position, Vector3 direction)
     {
         ClientBeginDrink(position, direction);
+        OnStartDrinking?.Invoke();
     }
 
     [Command]
     public void EndDrink()
     {
         ClientEndDrink();
+        OnStopDrinking?.Invoke();
     }
 
     [ClientRpc]
@@ -94,6 +105,7 @@ public class AlpacaController : NetworkBehaviour
         {
             ammo -= fireCost;
             ClientSpit();
+            OnSpit?.Invoke();
         }
     }
 
@@ -122,6 +134,16 @@ public class AlpacaController : NetworkBehaviour
         }
 
         playerColor = color;
+    }
+
+    [ClientRpc]
+    public void SetTeam(string team)
+    {
+        NetworkTeam teamComponent = this.GetComponent<NetworkTeam>();
+        if (teamComponent != null)
+        {
+            teamComponent.teamId = team;
+        }
     }
 
     private void HighlightUsable()

@@ -1,10 +1,11 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Mirror;
 using UnityEngine;
 
-public class FarmerManager : MonoBehaviour
+public class FarmerManager : NetworkBehaviour
 {
     private static List<Farmer> allFarmers = new List<Farmer>();
     private float redirectTimer;
@@ -21,10 +22,15 @@ public class FarmerManager : MonoBehaviour
         allFarmers.Add(farmer);
     }
 
-    [Server]
+    public Farmer GetFarmerById(uint id)
+    {
+        return allFarmers.FirstOrDefault(x => x.netId == id);
+    }
+    
     private void Update()
     {
-        if (GameManager.Instance != null 
+        if (netIdentity.isServer
+            && GameManager.Instance != null 
             && GameManager.Instance.gameHasStarted)
         {
             if (hasStarted)
