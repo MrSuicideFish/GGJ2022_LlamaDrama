@@ -19,7 +19,6 @@ public class AlpacaController : NetworkBehaviour
     public SkinnedMeshRenderer meshRenderer;
     public CharacterController characterController;
     public Animator animator;
-    public ParticleSystem spitParticle;
     public ParticleSystem dustParticle;
     public Transform headTarget;
 
@@ -113,7 +112,7 @@ public class AlpacaController : NetworkBehaviour
     private void ClientSpit()
     {
         // move me back!
-        spitParticle.Play(true);
+        //spitParticle.Play(true);
     }
     
     [Client]

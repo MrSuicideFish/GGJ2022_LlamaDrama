@@ -9476,7 +9476,6 @@ GameObject:
   - component: {fileID: 5467180235775271276}
   - component: {fileID: 3707604610207583939}
   - component: {fileID: 5594510407095258453}
-  - component: {fileID: 5497214200729624744}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -9556,7 +9555,6 @@ MonoBehaviour:
   meshRenderer: {fileID: 7906519932744168408}
   characterController: {fileID: 5979702624057393627}
   animator: {fileID: 7857966893156273696}
-  spitParticle: {fileID: 373076481877004244}
   dustParticle: {fileID: 3525082529744962274}
   headTarget: {fileID: 7805178920325026672}
   OnSpit:
@@ -9692,73 +9690,6 @@ MonoBehaviour:
   syncInterval: 0.1
   teamId: 
   forceShown: 0
---- !u!114 &5497214200729624744
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3513755048297281022}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6ba1d39e1a4e0a142831b5815b528429, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Active: 1
-  Label: Cinemachine Impulse
-  Chance: 100
-  Timing:
-    TimescaleMode: 0
-    InitialDelay: 0
-    CooldownDuration: 0
-    ExcludeFromHoldingPauses: 0
-    InterruptsOnStop: 1
-    NumberOfRepeats: 0
-    RepeatForever: 0
-    DelayBetweenRepeats: 1
-    MMFeedbacksDirectionCondition: 0
-    PlayDirection: 0
-    ConstantIntensity: 0
-    UseIntensityInterval: 0
-    IntensityIntervalMin: 0
-    IntensityIntervalMax: 0
-    Sequence: {fileID: 0}
-    TrackID: 0
-    Quantized: 0
-    TargetBPM: 120
-  DebugActive: 0
-  m_ImpulseDefinition:
-    m_ImpulseChannel: 1
-    m_RawSignal: {fileID: 0}
-    m_AmplitudeGain: 1
-    m_FrequencyGain: 1
-    m_RepeatMode: 0
-    m_Randomize: 1
-    m_TimeEnvelope:
-      m_AttackShape:
-        serializedVersion: 2
-        m_Curve: []
-        m_PreInfinity: 2
-        m_PostInfinity: 2
-        m_RotationOrder: 4
-      m_DecayShape:
-        serializedVersion: 2
-        m_Curve: []
-        m_PreInfinity: 2
-        m_PostInfinity: 2
-        m_RotationOrder: 4
-      m_AttackTime: 0
-      m_SustainTime: 0.2
-      m_DecayTime: 0.7
-      m_ScaleWithImpact: 1
-      m_HoldForever: 0
-    m_ImpactRadius: 100
-    m_DirectionMode: 0
-    m_DissipationMode: 2
-    m_DissipationDistance: 1000
-    m_PropagationSpeed: 343
-  Velocity: {x: 0, y: 0, z: 0}
-  ClearImpulseOnStop: 0
 --- !u!1 &4781642897126474475
 GameObject:
   m_ObjectHideFlags: 0
@@ -14573,7 +14504,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3548077077720618561}
   - component: {fileID: 2269162481786135252}
-  - component: {fileID: 1803337859674745677}
+  - component: {fileID: 29642364544117764}
+  - component: {fileID: 6737901381380850448}
   m_Layer: 0
   m_Name: SpitFeedback
   m_TagString: Untagged
@@ -14608,7 +14540,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Feedbacks:
-  - {fileID: 1803337859674745677}
+  - {fileID: 29642364544117764}
+  - {fileID: 6737901381380850448}
   InitializationMode: 2
   SafeMode: 3
   Direction: 0
@@ -14640,7 +14573,7 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls: []
   DebugActive: 0
---- !u!114 &1803337859674745677
+--- !u!114 &29642364544117764
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -14649,11 +14582,78 @@ MonoBehaviour:
   m_GameObject: {fileID: 8628450233443690916}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d8fe7e41857f44348b52714b3238715c, type: 3}
+  m_Script: {fileID: 11500000, guid: 6ba1d39e1a4e0a142831b5815b528429, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Active: 1
-  Label: Camera Shake
+  Label: Cinemachine Impulse
+  Chance: 100
+  Timing:
+    TimescaleMode: 0
+    InitialDelay: 0
+    CooldownDuration: 0
+    ExcludeFromHoldingPauses: 0
+    InterruptsOnStop: 1
+    NumberOfRepeats: 0
+    RepeatForever: 0
+    DelayBetweenRepeats: 1
+    MMFeedbacksDirectionCondition: 0
+    PlayDirection: 2
+    ConstantIntensity: 0
+    UseIntensityInterval: 0
+    IntensityIntervalMin: 0
+    IntensityIntervalMax: 0
+    Sequence: {fileID: 0}
+    TrackID: 0
+    Quantized: 0
+    TargetBPM: 120
+  DebugActive: 0
+  m_ImpulseDefinition:
+    m_ImpulseChannel: 1
+    m_RawSignal: {fileID: 11400000, guid: a3362fc21b7df0c40b14c6ddf7c977f7, type: 2}
+    m_AmplitudeGain: 1
+    m_FrequencyGain: 1
+    m_RepeatMode: 1
+    m_Randomize: 0
+    m_TimeEnvelope:
+      m_AttackShape:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      m_DecayShape:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      m_AttackTime: 0
+      m_SustainTime: 0.2
+      m_DecayTime: 0.2
+      m_ScaleWithImpact: 1
+      m_HoldForever: 0
+    m_ImpactRadius: 50
+    m_DirectionMode: 0
+    m_DissipationMode: 1
+    m_DissipationDistance: 2000
+    m_PropagationSpeed: 1200
+  Velocity: {x: 0, y: -0.1, z: -0.2}
+  ClearImpulseOnStop: 0
+--- !u!114 &6737901381380850448
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8628450233443690916}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c27131831afa28b499cb120fc9059997, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Active: 1
+  Label: Particles Play
   Chance: 100
   Timing:
     TimescaleMode: 0
@@ -14675,15 +14675,10 @@ MonoBehaviour:
     Quantized: 0
     TargetBPM: 120
   DebugActive: 0
-  RepeatUntilStopped: 0
-  Channel: 0
-  CameraShakeProperties:
-    Duration: 0.1
-    Amplitude: 0.2
-    Frequency: 40
-    AmplitudeX: 0
-    AmplitudeY: 0
-    AmplitudeZ: 0
+  Mode: 0
+  BoundParticleSystem: {fileID: 373076481877004244}
+  MoveToPosition: 0
+  RandomParticleSystems: []
 --- !u!1001 &1458406680261198538
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14694,6 +14689,10 @@ PrefabInstance:
     - target: {fileID: 1229520302779813150, guid: 4ff0bfd902efb8a4292e945305da9f69, type: 3}
       propertyPath: playOnAwake
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1229520302779813150, guid: 4ff0bfd902efb8a4292e945305da9f69, type: 3}
+      propertyPath: InitialModule.startSpeed.scalar
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 1229642230727041326, guid: 4ff0bfd902efb8a4292e945305da9f69, type: 3}
       propertyPath: playOnAwake
@@ -14853,11 +14852,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4305279730205268, guid: 17f32705f0b5c064d9d66ebca912989d, type: 3}
   m_PrefabInstance: {fileID: 7808722518312778576}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &7805178920325026672 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4423463455909920, guid: 17f32705f0b5c064d9d66ebca912989d, type: 3}
-  m_PrefabInstance: {fileID: 7808722518312778576}
-  m_PrefabAsset: {fileID: 0}
 --- !u!137 &7906519932744168408 stripped
 SkinnedMeshRenderer:
   m_CorrespondingSourceObject: {fileID: 137287491674867848, guid: 17f32705f0b5c064d9d66ebca912989d, type: 3}
@@ -14871,6 +14865,11 @@ GameObject:
 --- !u!95 &7857966893156273696 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 95486552707986800, guid: 17f32705f0b5c064d9d66ebca912989d, type: 3}
+  m_PrefabInstance: {fileID: 7808722518312778576}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &7805178920325026672 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4423463455909920, guid: 17f32705f0b5c064d9d66ebca912989d, type: 3}
   m_PrefabInstance: {fileID: 7808722518312778576}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &1022864973
