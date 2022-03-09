@@ -5,19 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="081381d8-4da8-4480-9894-89d49dc52ca5" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.GGJProject/.idea/indexLayout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.GGJProject/.idea/indexLayout.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.GGJProject/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.GGJProject/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/FarmAnimals/Animations_Cute_Animals/TypeB/TypeB.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/FarmAnimals/Animations_Cute_Animals/TypeB/TypeB.controller" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/FarmAnimals/UI/Grass.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/FarmAnimals/UI/Grass.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_GAME/Resources/GAME_MANAGER.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_GAME/Resources/GAME_MANAGER.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_GAME/Resources/Player.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_GAME/Resources/Player.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_GAME/Resources/Pause screen.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_GAME/Resources/Pause screen.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_GAME/Resources/Scoreboard.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_GAME/Resources/Scoreboard.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_GAME/Resources/Selection screen.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_GAME/Resources/Selection screen.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_GAME/Resources/Setting screen.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_GAME/Resources/Setting screen.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_GAME/Resources/Start screen.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_GAME/Resources/Start screen.prefab.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/_GAME/Scenes/MainMenu.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_GAME/Scenes/MainMenu.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_GAME/Scenes/Testing/MalcolmTestScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_GAME/Scenes/Testing/MalcolmTestScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_GAME/Scenes/Testing/MalcolmTestScene/TestMaterial.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_GAME/Scenes/Testing/MalcolmTestScene/TestMaterial.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_GAME/Scripts/AlpacaController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_GAME/Scripts/AlpacaController.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/_GAME/Scripts/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_GAME/Scripts/GameManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectVersion.txt" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectVersion.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -38,7 +40,9 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Assets/_GAME/Scripts/AlpacaController.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/9a2bc2dadc3549b3bfc74bb584d5898953400/7a/fe0c1acf/MethodReference.cs" root0="SKIP_HIGHLIGHTING" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="23zNKUnl42y5f3ihWFnUkLPAtLi" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -55,6 +59,7 @@
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="rider.run.widget.enabled.cache" value="false" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
@@ -96,6 +101,7 @@
       <option name="presentableId" value="Default" />
       <updated>1642732897310</updated>
       <workItem from="1642732921746" duration="16789000" />
+      <workItem from="1646761325871" duration="3271000" />
     </task>
     <servers />
   </component>

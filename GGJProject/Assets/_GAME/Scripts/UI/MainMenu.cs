@@ -1,0 +1,11 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class MainMenu : MonoBehaviour
+{
+    public Canvas StartScreen;
+    public Canvas SettingScreen;
+    public Canvas SelectionScreen;
+}

@@ -49,6 +49,7 @@ public class GameManager : Mirror.NetworkBehaviour
     [SyncVar] public float pathFollowSpeed;
     [SyncVar] public float pathStopPosition = 0.9f;
     [SyncVar] [HideInInspector] public bool gameHasStarted;
+    [SyncVar] [HideInInspector] public bool gameHasEnded;
     [SyncVar] [HideInInspector] public float dollyTrackPosition;
     
     private TeamInterestManagement teamManager;
