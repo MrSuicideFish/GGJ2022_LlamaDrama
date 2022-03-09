@@ -1,59 +1,125 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public static class SettingsManager
 {
-    private static SettingScreen screenInst;
+    private static SettingScreen _screenInst;
+    private static AudioMixer _mixer;
 
-    private static float GameVolume
+    private const string MusicVolumeTag = "MusicVolume";
+    private const string SfxVolumeTag = "SfxVolume";
+    private const string QualityTag = "MusicVolume";
+
+    public const float MaxGraphicsQuality = 2.0f;
+
+    private static float MusicVolume
     {
-        get
-        {
-            return PlayerPrefs.GetFloat("GameVolume", 1.0f);
-        }
-
-        set
-        {
-            PlayerPrefs.SetFloat("GameVolume", value);
-        }
+        get => PlayerPrefs.GetFloat(MusicVolumeTag, 1.0f);
+        set => PlayerPrefs.SetFloat(MusicVolumeTag, value);
+    }
+    
+    private static float SfxVolume
+    {
+        get => PlayerPrefs.GetFloat(SfxVolumeTag, 1.0f);
+        set => PlayerPrefs.SetFloat(SfxVolumeTag, value);
     }
 
+    private static int GraphicsQuality
+    {
+        get => PlayerPrefs.GetInt(QualityTag, 2);
+        set => PlayerPrefs.SetInt(QualityTag, value);
+    }
+
+    public static void Initialize()
+    {
+        ApplyAudioSettings();
+    }
+    
     public static void OpenSettings()
     {
-        if (screenInst == null)
+        if (_screenInst == null)
         {
             SettingScreen scrnRes = Resources.Load<SettingScreen>("UI/SettingScreen");
             if (scrnRes != null)
             {
-                screenInst = SettingScreen.Instantiate(scrnRes);
+                _screenInst = SettingScreen.Instantiate(scrnRes);
             }
         }
         
-        screenInst.Show();
+        _screenInst.Show();
+    }
+
+    private static void ApplyAudioSettings()
+    {
+        GetAudioMixer().SetFloat(MusicVolumeTag, MusicVolume);
+        GetAudioMixer().SetFloat(SfxVolumeTag, SfxVolume);
+    }
+
+    private static AudioMixer GetAudioMixer()
+    {
+        if (_mixer == null)
+        {
+            AudioMixer mixerRes = Resources.Load<AudioMixer>("Audio/MainAudioMixer");
+            if (mixerRes != null)
+            {
+                _mixer = mixerRes;
+            }
+        }
+        return _mixer;
     }
 
     public static void CloseSettings()
     {
-        if (screenInst == null)
+        if (_screenInst == null)
         {
             SettingScreen scrnRes = Resources.Load<SettingScreen>("UI/SettingScreen");
             if (scrnRes != null)
             {
-                screenInst = SettingScreen.Instantiate(scrnRes);
+                _screenInst = SettingScreen.Instantiate(scrnRes);
             }
         }
         
-        screenInst.Hide();
+        _screenInst.Hide();
     }
 
-    public static void SetVolume(float vol)
+    public static void SetMusicVolume(float vol)
     {
-        GameVolume = vol;
+        MusicVolume = vol;
+        ApplyAudioSettings();
     }
 
-    public static float GetVolume()
+    public static float GetMusicVolume()
     {
-        return GameVolume;
+        return MusicVolume;
+    }
+
+    public static void SetSfxVolume(float vol)
+    {
+        SfxVolume = vol;
+        ApplyAudioSettings();
+    }
+
+    public static float GetSfxVolume()
+    {
+        return SfxVolume;
+    }
+
+    public static void SetGraphicsQuality(float quality)
+    {
+        if (quality < 0.0f || quality > 2.0f)
+        {
+            return;
+        }
+
+        GraphicsQuality = (int)quality;
+        QualitySettings.SetQualityLevel(GraphicsQuality);
+        Debug.Log($"Graphics Quality Set To '{QualitySettings.GetQualityLevel()}'");
+    }
+
+    public static int GetGraphicsQuality()
+    {
+        return GraphicsQuality;
     }
 }

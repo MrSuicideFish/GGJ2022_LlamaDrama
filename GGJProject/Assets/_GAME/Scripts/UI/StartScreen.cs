@@ -13,6 +13,7 @@ public class StartScreen : MonoBehaviour
 
     private void OnEnable()
     {
+        SettingsManager.Initialize();
         JoinGamePanel.gameObject.SetActive(false);
     }
 
@@ -75,7 +76,7 @@ public class StartScreen : MonoBehaviour
 
     public void Settings()
     {
-        
+        SettingsManager.OpenSettings();
     }
 
     private void Update()

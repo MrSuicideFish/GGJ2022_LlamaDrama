@@ -6,9 +6,14 @@
   <component name="ChangeListManager">
     <list default="true" id="081381d8-4da8-4480-9894-89d49dc52ca5" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.GGJProject/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.GGJProject/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_GAME/Scenes/MainMenu.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_GAME/Scenes/MainMenu.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/CP/GUIdo/Flat/Sprites/Slider_Scrolls/icon3_slider_handle_rectangle.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CP/GUIdo/Flat/Sprites/Slider_Scrolls/icon3_slider_handle_rectangle.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Thoth/Cartoon UI Pack/Material/Minimalist Cartoon UI Pack Sliced.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Thoth/Cartoon UI Pack/Material/Minimalist Cartoon UI Pack Sliced.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_GAME/Resources/UI/SettingScreen.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_GAME/Resources/UI/SettingScreen.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/_GAME/Scripts/SettingsManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_GAME/Scripts/SettingsManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_GAME/Scripts/UI/MainMenu.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_GAME/Scripts/UI/MainMenu.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_GAME/Scripts/UI/PauseScreen.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_GAME/Scripts/UI/PauseScreen.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/_GAME/Scripts/UI/SettingScreen.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_GAME/Scripts/UI/SettingScreen.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_GAME/Scripts/UI/StartScreen.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_GAME/Scripts/UI/StartScreen.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,6 +33,7 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Assets/_GAME/Scripts/AlpacaController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ugui@1.0.0/Runtime/UI/Core/Slider.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -90,7 +96,7 @@
       <updated>1642732897310</updated>
       <workItem from="1642732921746" duration="16789000" />
       <workItem from="1646761325871" duration="3271000" />
-      <workItem from="1646838145104" duration="580000" />
+      <workItem from="1646838145104" duration="4160000" />
     </task>
     <servers />
   </component>
