@@ -5,22 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="081381d8-4da8-4480-9894-89d49dc52ca5" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.GGJProject/.idea/indexLayout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.GGJProject/.idea/indexLayout.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.GGJProject/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.GGJProject/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_GAME/Resources/Pause screen.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_GAME/Resources/Pause screen.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_GAME/Resources/Scoreboard.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_GAME/Resources/Scoreboard.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_GAME/Resources/Selection screen.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_GAME/Resources/Selection screen.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_GAME/Resources/Setting screen.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_GAME/Resources/Setting screen.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_GAME/Resources/Start screen.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_GAME/Resources/Start screen.prefab.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/_GAME/Scenes/MainMenu.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_GAME/Scenes/MainMenu.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_GAME/Scripts/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_GAME/Scripts/GameManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectVersion.txt" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectVersion.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_GAME/Scripts/SettingsManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_GAME/Scripts/SettingsManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_GAME/Scripts/UI/SettingScreen.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_GAME/Scripts/UI/SettingScreen.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -102,6 +90,7 @@
       <updated>1642732897310</updated>
       <workItem from="1642732921746" duration="16789000" />
       <workItem from="1646761325871" duration="3271000" />
+      <workItem from="1646838145104" duration="580000" />
     </task>
     <servers />
   </component>
